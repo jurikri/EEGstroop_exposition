@@ -681,7 +681,7 @@ def main_screen_leader_board():
         top_5_indices = np.argsort(arr_no_nan)[-5:][::-1]
         latest_index = np.argmax(today_scores[:,2])
         
-        scores_disp = np.array(np.round(arr, 3), dtype=float) * 100
+        scores_disp = np.array(arr * 1000, dtype=int) / 10
         msid_disp  = today_scores[:,3]
         
         ##
