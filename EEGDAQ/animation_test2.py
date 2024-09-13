@@ -179,8 +179,12 @@ def data_collection(queue):
     try:
         with open('comnum.pkl', 'rb') as file:
             comnum = pickle.load(file)
+            
+        if comnum is None:
+            raise ValueError('COM 포트가 None입니다.')
+        
         board = OpenBCICyton(port = comnum, daisy=False)
-    
+
     except:
         print('직렬포트 주소를 새로 찾습니다.')
         comnum = auto_find_COM.msmain()
