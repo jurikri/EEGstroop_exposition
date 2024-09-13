@@ -90,7 +90,7 @@ if False:
         if ix in [0,1,2]: z_score = -z_score
         z_scores.append(z_score)
         
-    means_stds_path = r'C:\SynologyDrive\worik in progress\혁창패\임상실험 논문작성\analysis\means_stds.pkl'
+    means_stds_path = r'utility\means_stds.pkl'
     with open(means_stds_path, 'wb') as f:
         pickle.dump(means_stds, f)
         
@@ -115,7 +115,7 @@ def stroop_tscore(data, weights = [[0.8, 0.2], [0.2, 0.3, 0.5]]):
     def calculate_zscore(data, mean, std):
         return (data - mean) / std
 
-    means_stds_path = r'C:\SynologyDrive\worik in progress\혁창패\임상실험 논문작성\analysis\means_stds.pkl'
+    means_stds_path = r'utility\means_stds.pkl'
     with open(means_stds_path, 'rb') as f:
         loaded_means_stds = pickle.load(f)
         
