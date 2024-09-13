@@ -56,7 +56,7 @@ current_path = os.getcwd()
 plt.ion()
 
 class MultiChannelEEGPlot:
-    def __init__(self, queue, channels=[0, 1, 2], num_samples=2500, update_interval=25):
+    def __init__(self, queue, channels=[0, 1, 2], num_samples=2500, update_interval=50):
         self.queue = queue
         self.channels = channels
         self.num_samples = num_samples
@@ -78,7 +78,7 @@ class MultiChannelEEGPlot:
         self.start_time = time.time()  # 그래프 업데이트 시작 시간 기록
         self.is_running = True  # is_running 속성을 정의
         self.update_counter = 0  # 업데이트 간격을 조절하는 카운터
-        self.downsample_factor = 2  # 다운샘플링을 위한 인자
+        self.downsample_factor = 10  # 다운샘플링을 위한 인자
 
         # 축 설정 (축 정보는 필요 없으므로 축과 틱을 모두 숨깁니다)
         for ax in self.axs:
