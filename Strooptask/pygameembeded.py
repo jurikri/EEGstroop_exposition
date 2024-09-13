@@ -219,7 +219,7 @@ def run_block(stimuli_selected, savepath=None, msid=None, screen=None, fix_x=Non
     for condition in stimuli_selected:
         
         # trial = stimuli_selected[condition][0]
-        for trial in stimuli_selected[condition][:1]: # 20 -> 16으로 축소
+        for trial in stimuli_selected[condition][:16]: # 20 -> 16으로 축소
             pyautogui.move(fix_x, fix_y, duration=0)
             pygame.event.clear()
 
@@ -629,10 +629,14 @@ else:
 ## learder board backend for PAGE1
 import pandas as pd
 from datetime import datetime
+import sys
+sys.path.append(r'utility')
+import ranking_board_backend
 
 canvas, W, H, FONT_SZ = None, None, None, None
 leader_board_img, background_image = None, None
 def main_screen_leader_board():
+    ranking_board_backend.msmain()
     # PAGE1
     global leader_board_img, background_image
     global W, H, FONT_SZ
@@ -655,30 +659,6 @@ def main_screen_leader_board():
     canvas.create_image(0, 0, anchor="nw", image=background_image)
     
     excel_path = r'features_output.xlsx'
-    
-    try:
-        # 파일이 있으면 엑셀 파일 읽기
-        df = pd.read_excel(excel_path)
-    except FileNotFoundError:
-        # 파일이 없을 경우 새로운 파일 생성
-        print("파일이 존재하지 않으므로 새 파일을 생성합니다.")
-        
-        # 빈 데이터프레임 생성, 각 컬럼 이름을 추가
-        df = pd.DataFrame({
-            'date': [],
-            'msid': [],
-            'total_score': [],
-            'netural_rt': [],
-            'congruent_rt': [],
-            'incongruent_rt': [],
-            'netural_acc': [],
-            'congruent_acc': [],
-            'incongruent_acc': []
-        })
-        # os.makedirs(os.path.dirname(excel_path), exist_ok=True)
-        df.to_excel(excel_path, index=False)
-        print("새 엑셀 파일을 생성했습니다.")
-    
     df = pd.read_excel(excel_path)
     
     current_date = datetime.now()
