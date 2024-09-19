@@ -669,7 +669,7 @@ def main_screen_leader_board():
             date_from_str.month == current_date.month and 
             date_from_str.day == current_date.day)
         
-        if istoday or True:
+        if istoday or False:
             today_scores.append([df['total_score'][r], r,  date_from_str, df['msid'][r]])
     
     if len(today_scores) > 0:
